@@ -14,13 +14,16 @@ public class FourteenthQ {
         Integer ans=numList.stream().sorted(Comparator.reverseOrder()).findFirst().get();
         System.out.println(ans);
 
-        //Approach-1
+        //Approach-2
         Integer ans2=numList.stream().max(Comparator.naturalOrder()).get();
         System.out.println(ans2);
 
-        //Approach-2
+        //Approach-3
         Integer val=numList.stream().max(Integer::compare).get();
         System.out.println(val);
 
+        //Approach-4
+        Integer result=numList.stream().reduce((x,y)->x>y?x:y).get();
+        System.out.println(result);
     }
 }

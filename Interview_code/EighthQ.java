@@ -10,10 +10,15 @@ public class EighthQ {
         int[] num={12,23,34,45,15,19,91};
         List<Integer> list=Arrays.stream(num)
                 .boxed()
-                .map(x->Integer.toString(x))
+                .map(x->x.toString())
                 .filter(string->string.startsWith("1"))
                 .map(Integer::valueOf)
                 .collect(Collectors.toList());
         System.out.println(list);
     }
 }
+/*
+primitive stream----->stream of wrapper/object : boxed()
+Wrapper -------> String : object_name.toString()
+String --------> Wrapper : Wrapper class name::valueOf (method reference)
+ */

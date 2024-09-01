@@ -29,5 +29,11 @@ public class EleventhQ {
         //Approach-3
         Set<Integer> set = new HashSet();
         numList.stream().filter(value-> !set.add(value)).forEach(System.out::println);
+
+        //Approach-4
+        Set<Integer> set2 = new HashSet();
+        List<Integer> resultList=numList.stream().filter(value-> !set2.add(value))
+                .collect(Collectors.toList());
+        System.out.println(resultList);
     }
 }

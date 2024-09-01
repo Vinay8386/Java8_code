@@ -10,7 +10,7 @@ public class SixthQ {
 
         //find the second-lowest
         Integer second_lowest= Arrays.stream(num).boxed()
-                .sorted()
+                .sorted()  //It will sort elements in default(ascending) order
                 .skip(1)
                 .findFirst()
                 .get();

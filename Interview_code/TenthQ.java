@@ -9,18 +9,19 @@ public class TenthQ {
     public static void main(String[] args) {
         List<Integer> numList= Arrays.asList(2,13,4,5,16,7,1);
         numList.stream()
-                .map(no->no+"")
+                .map(no->String.valueOf(no))
                 .filter(no->no.startsWith("1"))
                 .forEach(System.out::println);
         //or
         List<String> String_list=numList.stream()
-                .map(no->no+" ")
-                .filter(no->no.startsWith("1")).collect(Collectors.toList());
+                .map(String::valueOf)
+                .filter(no->no.startsWith("1"))
+                .collect(Collectors.toList());
         System.out.println(String_list);
 
         //Integer list which will start with 1 using valueOf method
         List<Integer> int_list=numList.stream()
-                .map(no->String.valueOf(no))
+                .map(String::valueOf)
                 .filter(no->no.startsWith("1")).map(Integer::parseInt).collect(Collectors.toList());
         System.out.println(int_list);
 
