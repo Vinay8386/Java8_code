@@ -1,8 +1,6 @@
 package Java8.InterviewQuestion;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -11,19 +9,45 @@ public class SecondQ {
     public static void main(String[] args) {
         String str="abcadc";
 
-        /*Arrays.stream(str.split(""))
-                .collect(Collectors.groupingBy(Function.identity(),Collectors.counting()))
-                .entrySet().stream()
-                .filter(input->input.getValue()>1)
-                .map(Map.Entry::getKey)
-                .forEach(System.out::println);*/
 
+        System.out.println("print duplicate value with count");
+        List<Map.Entry<String,Long>> duplicateElementInKeyValuePair=Arrays.stream(str.split(""))
+                .collect(Collectors.groupingBy(Function.identity(),Collectors.counting()))//group by based on identity & count
+                .entrySet().stream()
+                .filter(entry->entry.getValue()>1)
+                .collect(Collectors.toList());
+        System.out.println(duplicateElementInKeyValuePair);
+
+        System.out.println("print duplicate value without count");
         List<String> duplicateElement=Arrays.stream(str.split(""))
                 .collect(Collectors.groupingBy(Function.identity(),Collectors.counting()))//group by based on identity & count
                 .entrySet().stream()
-                .filter(input->input.getValue()>1)
+                .filter(entry->entry.getValue()>1)
                 .map(Map.Entry::getKey)
                 .collect(Collectors.toList());
         System.out.println(duplicateElement);
+
+        System.out.println("print duplicate value without java8 using char array");
+        char[] ch=str.toCharArray();
+        Set<Character> e=new HashSet<>();
+        Set<Character> duplicate=new HashSet<>();
+        for (char c:ch) {
+            if(!(e.add(c))){
+                duplicate.add(c);
+            }
+        }
+        System.out.println("duplicate element is: "+duplicate);
+
+
+        System.out.println("print duplicate value without java8 using String array");
+        String[] s=str.split("");
+        Set<String> un=new HashSet<>();
+        Set<String> du=new HashSet<>();
+        for (String c:s) {
+            if(!(un.add(c))){
+                du.add(c);
+            }
+        }
+        System.out.println("duplicate element is: "+du);
     }
 }

@@ -17,3 +17,12 @@ public class SeventhQ {
         System.out.println(smallest_String);
     }
 }
+/*
+Reduce method is a terminal operation that takes two parameters
+1. Identity value
+2. An accumulator function
+Identity value: It is the initial value (first value of stream) of reduction and default result if stream is empty
+Accumulator function: It is the binary operator that combines the partial result and next element of the stream.
+The accumulator function is (word1, word2) -> word1.length() > word2.length() ? word1 : word2.
+This lambda function compares the lengths of two strings (word1 and word2) and returns the one with the greater length.
+ */

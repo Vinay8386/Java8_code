@@ -2,6 +2,8 @@ package Java8.InterviewQuestion;
 
 import java.util.Arrays;
 import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
+import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -9,13 +11,34 @@ import java.util.stream.Collectors;
 public class FifthQ {
     public static void main(String[] args) {
         String str="iLoveJava";
-        //Use LinkedHashMap so insertion order will be preserved, and you will get the correct answer
+        System.out.println("First repeated element without using LinkedHashMap");
+        String first_repeated_element_without_LHM=Arrays.stream(str.split(""))
+                .collect(Collectors.groupingBy(Function.identity(),Collectors.counting()))
+                .entrySet().stream()
+                .filter(input->input.getValue()>1)
+                .findFirst().get().getKey();
+        System.out.println(first_repeated_element_without_LHM);
+
+        System.out.println("First repeated element using LinkedHashMap");
         String first_repeated_element=Arrays.stream(str.split(""))
                 .collect(Collectors.groupingBy(Function.identity(), LinkedHashMap::new,Collectors.counting()))
                 .entrySet().stream()
                 .filter(input->input.getValue()>1)
                 .findFirst().get().getKey();
         System.out.println(first_repeated_element);
+
+        System.out.println("First repeated element using set");
+        Set<String> set=new LinkedHashSet<>();
+        Set<String> first_time=new LinkedHashSet<>();
+        Set<String> repeated=new LinkedHashSet<>();
+        for (String s:str.split("")) {
+            if(set.add(s)){
+                first_time.add(s);
+            }else {
+                repeated.add(s);
+            }
+        }
+        System.out.println(repeated.stream().findFirst().get());
     }
 }
 /*

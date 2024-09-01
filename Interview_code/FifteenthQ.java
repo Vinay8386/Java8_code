@@ -13,13 +13,20 @@ public class FifteenthQ {
         Integer ans=numList.stream().sorted().findFirst().get();
         System.out.println(ans);
 
-        //Approach-1
+        Integer an=numList.stream().sorted(Comparator.naturalOrder()).findFirst().get();
+        System.out.println(an);
+
+        //Approach-2
         Integer ans2=numList.stream().min(Comparator.naturalOrder()).get();
         System.out.println(ans2);
 
-        //Approach-2
+        //Approach-3
         Integer val=numList.stream().min(Integer::compare).get();
         System.out.println(val);
+
+        //Approach-4
+        Integer result=numList.stream().reduce((x,y)->x<y?x:y).get();
+        System.out.println(result);
 
     }
 }

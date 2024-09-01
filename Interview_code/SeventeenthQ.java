@@ -25,7 +25,8 @@ public class SeventeenthQ {
                 .collect(Collectors.groupingBy(Function.identity(),Collectors.counting()))
                 .entrySet().stream()
                 .filter(no->no.getValue()>1)
-                .findFirst().stream().count();
+                .map(x->x.getValue())
+                .findFirst().get();
         if (ans>=1){
             return true;
         }else {
